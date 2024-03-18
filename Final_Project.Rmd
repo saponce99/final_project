@@ -1,0 +1,47 @@
+---
+title: "Final Project 2: R Markdown"
+author: "Stephanie Ponce"
+date: "`r Sys.Date()`"
+params:
+  production: TRUE
+output: html_document
+--- 
+
+```{r, set-chunk-opts,  echo = FALSE, eval = params$production}
+library(knitr)
+opts_chunk$set(
+    echo=FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, load-data}
+here::i_am("Final_Project.Rmd")
+data <- readRDS(file = here::here("output/data_clean.rds"))
+```
+
+# Data Summary and Analysis Plan
+The National Vital Statistics System (NVSS) captures national cardiovascular disease surveillance data. The datarepresent the rate of coronary heart disease and stroke among adults 18 and older in the United States (U.S.). The daya are age adjusted and are reported overall and stratified by sex and race-ethnicity. The data capture prevalence across 51 U.S. states and territories. The objective of the analysis is to report the age-standardized prevalence of cardiovascular disease by gender and race-ethnicity across each U.S. state and territory included in the dataset. Additionally, differences across sex will be visualized for adults living in California.
+
+# Descriptive Analysis
+
+This table reports the prevalence of cardiovascular disease overall and across sociodemographic characteristics (sex, race-ethnicity) by U.S. state and territory. 
+
+```{r, table1}
+desc_table <- readRDS(
+    file = here::here("output/desc_table.Rds")
+)
+
+desc_table
+```
+
+## Figure 1
+Figure 1 displays the overall prevalence of cardiovascular disease and prevalence by sex in the state of California. Prevalence is reported as Cases per 100,000 and is age-standardized.
+
+```{r, bargraph}
+here::i_am("Final_Project.Rmd")
+data <- readRDS(file = here::here("output/bargraph_data.rds"))
+
+knitr::include_graphics(
+  here::here("output/bargraph.png")
+)
+```
