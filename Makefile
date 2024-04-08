@@ -21,3 +21,7 @@ output/desc_table.rds: code/01_make_table1.R output/data_clean.rds
 output/bargraph.png: code/03_make_bargraph.R output/bargraph_data.rds
 	Rscript code/03_make_bargraph.R
 
+## renv install
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt=FALSE)"

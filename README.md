@@ -23,3 +23,6 @@ using `bargraph_data.Rds`
 
 
 `code/04_render_report.R` is used for rendering the combined report from the command line
+
+Synchronize project environment
+run 'make install' in the terminal to synchronize the package repository
