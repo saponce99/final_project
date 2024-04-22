@@ -25,3 +25,16 @@ output/bargraph.png: code/03_make_bargraph.R output/bargraph_data.rds
 .PHONY: install
 install:
 	Rscript -e "renv::restore(prompt=FALSE)"
+	
+## rule to build Docker image
+final_project_image: 
+	docker build -t final_project_image3 .
+	touch $@
+	
+## generates the report automatically in container
+report/Final_Project.html: final_project_image
+	docker run -v "/$$(pwd)/report":/home/rstudio/project/report saponce99/final_project_image3
+
+.PHONY: clean
+clean: 
+	rm -f output/*.Rds && rm -f output/*.png && rm -f *.html && rm -f report/*.html
