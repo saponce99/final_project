@@ -26,3 +26,8 @@ using `bargraph_data.Rds`
 
 Synchronize project environment
 run 'make install' in the terminal to synchronize the package repository
+
+`make report/Final_Project.html`
+- runs the docker image for a Windows machine
+- in order to run on a Mac/Linux-OS machine remove the forward slash in the make rule so that the path is as follows:
+ "$$(pwd)/report":/home/rstudio/project/report saponce99/final_project_image3
